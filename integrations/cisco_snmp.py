@@ -79,9 +79,8 @@ async def snmp_walk(host, port, community, start_oid, stop_oid):
                 current_oid = str(oid)
 
                 if not is_oid_in_range(current_oid, start_oid, stop_oid):
-                    return results  # Return the collected results
-
-                #results.append(f"{oid.prettyPrint()} = {value.prettyPrint()}")
+                    return results
+                
                 vlan,ipv4,mac = extract_info(current_oid, value.prettyPrint())
                 results.append({"vlan": vlan, "ip": ipv4, "mac": format_mac(mac)})
 
